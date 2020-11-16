@@ -6,8 +6,17 @@
     <title>Test Harnes</title>
 </head>
 <body>
+    hello world
 <script>
-    let ws = new WebSocket("ws://localhost:3009")
+    let socket = new WebSocket("ws://localhost:3099")
+    socket.onmessage = message => {
+        const response = JSON.parse(message.data);
+        console.log(response);
+        if (response.method === "connect"){
+            clientId = response.clientId;
+            console.log("Client id Set successfully " + clientId)
+        }
+    }
 </script>
 </body>
 </html>
